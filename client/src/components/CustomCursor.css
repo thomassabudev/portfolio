@@ -1,0 +1,13 @@
+body {
+    cursor: none;
+    /* Hide default cursor */
+}
+
+/* Ensure links still show pointer when hovering (optional, but good for usability) 
+   Actually, with custom cursor we usually want to hide standard pointer too, or rely on custom cursor change.
+   Let's hide standard pointer everywhere.
+*/
+a,
+button {
+    cursor: none;
+}
