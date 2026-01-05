@@ -25,7 +25,8 @@ const Projects = () => {
 
     useEffect(() => {
         // In dev, assuming server is at 5000. In prod, relative path if served together.
-        fetch('http://localhost:5000/api/projects')
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        fetch(`${apiUrl}/api/projects`)
             .then(res => res.json())
             .then(data => setProjects(data))
             .catch(err => console.error("Error fetching projects:", err));
