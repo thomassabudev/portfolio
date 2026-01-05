@@ -29,18 +29,37 @@ const projectSchema = new mongoose.Schema({
 
 const Project = mongoose.model('Project', projectSchema);
 
+// Skill Schema
+const skillSchema = new mongoose.Schema({
+    category: String,
+    items: [String]
+});
+
+const Skill = mongoose.model('Skill', skillSchema);
+
 // Routes
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
-// Projects Route - Fetch from MongoDB
+// Projects Route
 app.get('/api/projects', async (req, res) => {
     try {
         const projects = await Project.find();
         res.json(projects);
     } catch (err) {
         console.error("Error fetching projects:", err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+// Skills Route
+app.get('/api/skills', async (req, res) => {
+    try {
+        const skills = await Skill.find();
+        res.json(skills);
+    } catch (err) {
+        console.error("Error fetching skills:", err);
         res.status(500).json({ message: "Server Error" });
     }
 });

@@ -1,13 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const skills = [
-    { category: "Frontend", items: ["React.js", "Tailwind CSS", "HTML5", "CSS3", "JavaScript (ES6+)"] },
-    { category: "Backend", items: ["Node.js", "Express.js", "REST APIs"] },
-    { category: "Database", items: ["MongoDB", "MySQL", "Firebase"] },
-    { category: "Tools", items: ["n8n", "Webhooks", "Git", "GitHub"] }
-];
-
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -27,6 +20,15 @@ const itemVariants = {
 };
 
 const Skills = () => {
+    const [skills, setSkills] = React.useState([]);
+
+    React.useEffect(() => {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        fetch(`${apiUrl}/api/skills`)
+            .then(res => res.json())
+            .then(data => setSkills(data))
+            .catch(err => console.error("Error fetching skills:", err));
+    }, []);
     return (
         <section id="skills" className="section">
             <motion.h2
