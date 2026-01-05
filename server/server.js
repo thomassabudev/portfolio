@@ -57,12 +57,17 @@ app.post('/api/contact', async (req, res) => {
     // User must provide valid credentials in .env
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
-        port: 587,
-        secure: false, // use false for STARTTLS; true for 465
+        port: 465,
+        secure: true,
         auth: {
-            user: process.env.EMAIL_USER, // Your Gmail address
-            pass: process.env.EMAIL_PASS  // Your Gmail App Password
-        }
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        },
+        // Fix for Cloud Timeouts: Force IPv4
+        family: 4,
+        // Enable detailed logging
+        logger: true,
+        debug: true
     });
 
     const mailOptions = {
