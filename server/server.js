@@ -37,6 +37,15 @@ const skillSchema = new mongoose.Schema({
 
 const Skill = mongoose.model('Skill', skillSchema);
 
+// Asset Schema (For separate image management)
+const assetSchema = new mongoose.Schema({
+    title: String,
+    url: String,
+    category: String // e.g., "Gallery", "Certificates", "ProjectShots"
+});
+
+const Asset = mongoose.model('Asset', assetSchema);
+
 // Routes
 app.get('/', (req, res) => {
     res.send('API is running...');
@@ -60,6 +69,17 @@ app.get('/api/skills', async (req, res) => {
         res.json(skills);
     } catch (err) {
         console.error("Error fetching skills:", err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+// Assets Route
+app.get('/api/assets', async (req, res) => {
+    try {
+        const assets = await Asset.find();
+        res.json(assets);
+    } catch (err) {
+        console.error("Error fetching assets:", err);
         res.status(500).json({ message: "Server Error" });
     }
 });
