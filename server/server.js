@@ -56,7 +56,9 @@ app.post('/api/contact', async (req, res) => {
     // Create a transporter
     // User must provide valid credentials in .env
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // use SSL
         auth: {
             user: process.env.EMAIL_USER, // Your Gmail address
             pass: process.env.EMAIL_PASS  // Your Gmail App Password
