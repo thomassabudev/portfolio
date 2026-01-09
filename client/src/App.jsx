@@ -9,6 +9,9 @@ import Skills from './sections/Skills';
 
 import CustomCursor from './components/CustomCursor';
 
+import Education from './sections/Education';
+import Certifications from './sections/Certifications';
+
 function App() {
   return (
     <>
@@ -27,6 +30,8 @@ function App() {
         <Hero />
         <Skills />
         <Projects />
+        <Education />
+        <Certifications />
         <Contact />
       </main>
     </>
