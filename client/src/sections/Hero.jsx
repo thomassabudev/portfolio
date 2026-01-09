@@ -40,16 +40,42 @@ const Hero = () => {
 
                     <motion.div
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        style={{ marginTop: '2rem' }}
+                        style={{ marginTop: '2rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}
                     >
                         <a href="#projects" style={{
                             padding: '12px 30px',
                             background: 'var(--primary-color)',
                             borderRadius: '30px',
                             fontWeight: 'bold',
-                            color: 'white'
+                            color: 'white',
+                            textDecoration: 'none',
+                            boxShadow: '0 0 15px rgba(109, 40, 217, 0.5)'
                         }}>
                             View Work
+                        </a>
+                        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" style={{
+                            padding: '12px 30px',
+                            background: 'rgba(255,255,255,0.05)',
+                            border: '1px solid var(--accent-color)',
+                            borderRadius: '30px',
+                            fontWeight: 'bold',
+                            color: 'var(--accent-color)',
+                            textDecoration: 'none',
+                            backdropFilter: 'blur(5px)',
+                            transition: 'all 0.3s ease'
+                        }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = 'var(--accent-color)';
+                                e.target.style.color = 'black';
+                                e.target.style.boxShadow = '0 0 20px var(--accent-color)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = 'rgba(255,255,255,0.05)';
+                                e.target.style.color = 'var(--accent-color)';
+                                e.target.style.boxShadow = 'none';
+                            }}
+                        >
+                            View Resume
                         </a>
                     </motion.div>
                 </motion.div>
